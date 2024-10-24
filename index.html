@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Yield Prediction</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body, html {
+            height: 100%;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            background-color: lightgreen;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+        }
+        .container {
+            background-color: rgba(0, 128, 0, 0.85);
+            padding: 50px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            width: 90%;
+            max-width: 500px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 28px;
+            color: #fff;
+        }
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+            color: #fff;
+        }
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0 20px;
+            border: none;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 15px;
+            background-color: #cf4b1b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .prediction {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Crop Yield Prediction</h1>
+        <form action="/predict" method="POST">
+            <label for="Crop">Crop:</label>
+            <input type="text" id="Crop" name="Crop" required>
+
+            <label for="Crop_Year">Crop Year:</label>
+            <input type="number" id="Crop_Year" name="Crop_Year" required>
+
+            <label for="Season">Season:</label>
+            <input type="text" id="Season" name="Season" required>
+
+            <label for="State">State:</label>
+            <input type="text" id="State" name="State" required>
+
+            <label for="Area">Area (in hectares):</label>
+            <input type="number" id="Area" name="Area" required>
+
+            <label for="Annual_Rainfall">Annual Rainfall (in mm):</label>
+            <input type="number" id="Annual_Rainfall" name="Annual_Rainfall" required>
+
+            <label for="Fertilizer">Fertilizer Used (in Kg):</label>
+            <input type="number" id="Fertilizer" name="Fertilizer" required>
+
+            <label for="Pesticide">Pesticide Used (in liters):</label>
+            <input type="number" id="Pesticide" name="Pesticide" required>
+
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if prediction %}
+        <div class="prediction">
+            <h2>Predicted Crop Yield: {{ prediction }} tons</h2>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
